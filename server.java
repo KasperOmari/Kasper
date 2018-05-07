@@ -3,11 +3,8 @@ package com.company;
 import java.io.*;
 import java.net.*;
 
-public class Server implements Runnable{
-
-
-    @Override
-    public void run() {
+public class Server{
+    public static void main(String[] args) {
         ServerSocket ss=null;
         Socket c=null;
         try {
@@ -23,7 +20,7 @@ public class Server implements Runnable{
                 th.start();
             }
         } catch (IOException e) {
-            System.out.println("Error in Server Side");
+            System.err.println("Error in Server Side");
         }
     }
 }

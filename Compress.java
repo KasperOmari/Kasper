@@ -6,7 +6,7 @@ import java.util.zip.*;
 
 public class Compress implements Runnable{
     public  static Socket c;
-    String fname;
+    static String fname;
 
     public Compress(Socket a){
         c=a;
@@ -33,28 +33,27 @@ public class Compress implements Runnable{
             }
             zout.close();
 
-            send(ComFileName);
+            send(ComFileName);//send compressed file to client
         }catch (IOException e){
-            e.printStackTrace();
+            System.err.println("Error in compressing");
         }
 
     }
-    public void send(String fname)  {
+    public static void send(String name)  {
         try {
-            FileInputStream in=new FileInputStream(fname);
+            FileInputStream in=new FileInputStream(name);
             BufferedInputStream bf=new BufferedInputStream(in);
-            PrintWriter pr = new PrintWriter(c.getOutputStream());
+            BufferedOutputStream bout=new BufferedOutputStream(c.getOutputStream());
             while(true){
                 int b=bf.read();
+                bout.write(b);
+                System.out.println(b);
                 if(b==-1)break;
-                pr.print((byte)b);
             }
-            pr.flush();
-
+            bout.flush();
         } catch (IOException e) {
-            System.out.println("Error in Sending");
+            System.err.println("Error in Sending");
         }
 
     }
 }
-
