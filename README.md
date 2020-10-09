@@ -1,3 +1,3 @@
 # Kasper
 
-This Repo just for random stuff to share with people :) 
+This Repo just for random stuff I was doing :) 
